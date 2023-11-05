@@ -35,13 +35,14 @@ const Project = ({
           {link}
         </Link>
       </h3>
-      <Image
-        src={imageUrl}
-        alt={`Preview of ${username} project`}
-        width={1280}
-        height={720}
-        className="rounded"
-      />
+      <div className="max-h-36 overflow-hidden rounded transition-all delay-200 duration-500 hover:max-h-[720px]">
+        <Image
+          src={imageUrl}
+          alt={`Preview of ${username} project`}
+          width={1280}
+          height={720}
+        />
+      </div>
       <p>
         {htmr(message, {
           transform: {
@@ -49,6 +50,12 @@ const Project = ({
               <Link href={href as string}>{children}</Link>
             ),
             p: ({ children }) => <p className="my-2">{children}</p>,
+            ul: ({ children }) => (
+              <ul className="list-disc pl-4">{children}</ul>
+            ),
+            ol: ({ children }) => (
+              <ul className="list-decimal pl-4">{children}</ul>
+            ),
           },
         })}
       </p>
