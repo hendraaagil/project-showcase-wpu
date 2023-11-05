@@ -36,11 +36,11 @@ export default async function Home({
   )
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-5xl flex-col items-center space-y-8 p-24">
-      <h1 className="text-4xl font-bold">Project Showcase WPU</h1>
+    <main className="mx-auto flex min-h-screen max-w-5xl flex-col items-center space-y-8 px-1 py-12 sm:px-4">
+      <h1 className="text-center text-4xl font-bold">Project Showcase WPU</h1>
       <Season seasons={seasons} />
-      <div className="flex items-center">
-        <TimerReset className="mr-2 h-5 w-5" />
+      <div className="flex items-center text-sm">
+        <TimerReset className="mr-2 h-4 w-4" />
         <p>Terakhir Diupdate: {toLocalDate(new Date(updatedAt))}</p>
       </div>
       <hr className="w-full border-gray-400" />

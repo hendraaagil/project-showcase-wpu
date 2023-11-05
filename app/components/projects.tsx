@@ -12,17 +12,29 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
+  Link,
 } from '@/app/components/ui'
 import { toKebabCase, toTitleCase } from '@/app/libs/format'
 import { imageBaseUrl } from '@/app/constants/url'
 
-const Project = ({ project }: { project: Project }) => {
+const Project = ({
+  position,
+  project,
+}: {
+  position: number
+  project: Project
+}) => {
   const { image, link, message, username } = project
   const imageUrl = imageBaseUrl + image
 
   return (
     <li className="space-y-2">
-      <a href={link}>{link}</a>
+      <h3 className="text-lg font-bold">
+        {position}. {username} -{' '}
+        <Link href={link} className="font-bold">
+          {link}
+        </Link>
+      </h3>
       <Image
         src={imageUrl}
         alt={`Preview of ${username} project`}
@@ -30,7 +42,16 @@ const Project = ({ project }: { project: Project }) => {
         height={720}
         className="rounded"
       />
-      <p>{htmr(message)}</p>
+      <p>
+        {htmr(message, {
+          transform: {
+            a: ({ children, href }) => (
+              <Link href={href as string}>{children}</Link>
+            ),
+            p: ({ children }) => <p className="my-2">{children}</p>,
+          },
+        })}
+      </p>
     </li>
   )
 }
@@ -73,9 +94,13 @@ export const Projects = ({
             </AccordionTrigger>
           </a>
           <AccordionContent className="rounded-b bg-gray-300 py-2">
-            <ol className="list-decimal space-y-4 px-6">
-              {projects.map((project) => (
-                <Project project={project} key={project.link} />
+            <ol className="space-y-4 px-6">
+              {projects.map((project, index) => (
+                <Project
+                  position={index + 1}
+                  project={project}
+                  key={project.link}
+                />
               ))}
             </ol>
           </AccordionContent>

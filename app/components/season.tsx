@@ -22,7 +22,7 @@ export const Season = ({ seasons }: { seasons: Showcase['seasons'] }) => {
     <select
       name="season"
       id="season"
-      className="w-full max-w-xs rounded bg-transparent p-2"
+      className="w-full max-w-xs cursor-pointer rounded bg-transparent p-2 transition-all hover:bg-gray-300"
       defaultValue={searchParams.get('season')?.toString() ?? seasons[0].key}
       onChange={(e) => handleChange(e.target.value)}
     >
