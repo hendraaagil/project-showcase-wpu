@@ -26,11 +26,12 @@ const Project = ({
 }) => {
   const { image, link, message, username } = project
   const imageUrl = imageBaseUrl + image
+  const name = position + '. ' + username + ' - '
 
   return (
     <li className="space-y-2">
       <h3 className="text-lg font-bold">
-        {position}. {username} -{' '}
+        {name}
         <Link href={link} className="font-bold">
           {link}
         </Link>
@@ -106,7 +107,7 @@ export const Projects = ({
             </AccordionTrigger>
           </a>
           <AccordionContent className="rounded-b bg-gray-300 py-2">
-            <ol className="space-y-4 px-6">
+            <ol className="space-y-4 px-2 sm:px-6">
               {projects.map((project, index) => (
                 <Project
                   position={index + 1}

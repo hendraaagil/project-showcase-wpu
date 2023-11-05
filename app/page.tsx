@@ -35,7 +35,7 @@ export default async function Home({
   )
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-5xl flex-col items-center px-1 pb-12 sm:px-4">
+    <main className="mx-auto flex max-w-5xl flex-col items-center px-1 pb-8 sm:px-4">
       <Hero seasons={seasons} updatedAt={updatedAt} />
       <hr className="mb-4 w-full border-gray-400" />
       <Projects projects={projectPerSeason} />

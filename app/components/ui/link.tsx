@@ -14,7 +14,7 @@ export const Link = ({
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className={clsx('text-blue-700 hover:underline', className)}
+    className={clsx('font-medium underline hover:text-blue-700', className)}
   >
     {children}
   </a>
