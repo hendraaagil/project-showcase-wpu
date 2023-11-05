@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
+import clsx from 'clsx'
 import { plusJakartaSans } from '@/app/libs/fonts'
 
 export const metadata: Metadata = {
@@ -15,7 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={plusJakartaSans.className}>{children}</body>
+      <body className={clsx(plusJakartaSans.className, 'bg-gray-200')}>
+        {children}
+      </body>
     </html>
   )
 }
