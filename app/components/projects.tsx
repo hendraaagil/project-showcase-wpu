@@ -35,7 +35,7 @@ const Project = ({
           {link}
         </Link>
       </h3>
-      <div className="max-h-36 overflow-hidden rounded transition-all delay-200 duration-500 hover:max-h-[720px]">
+      <div className="max-h-36 overflow-hidden rounded transition-all delay-150 duration-500 hover:max-h-[720px]">
         <Image
           src={imageUrl}
           alt={`Preview of ${username} project`}
@@ -87,7 +87,12 @@ export const Projects = ({
   }
 
   return (
-    <Accordion type="single" className="w-full" value={opened} collapsible>
+    <Accordion
+      type="single"
+      className="w-full space-y-2"
+      value={opened}
+      collapsible
+    >
       {dates.map(({ date, projects }) => (
         <AccordionItem value={date} key={date}>
           <a href={`#${toKebabCase(date)}`}>
