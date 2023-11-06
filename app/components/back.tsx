@@ -9,7 +9,7 @@ export const Back = () => {
   return (
     <button
       onClick={() => router.back()}
-      className="flex items-center space-x-2 rounded px-4 py-2 font-semibold no-underline transition-colors hover:bg-gray-300 hover:text-blue-700"
+      className="flex items-center space-x-2 rounded px-2 py-2 font-semibold no-underline transition-colors hover:bg-gray-300 hover:text-blue-700 sm:px-4"
     >
       <Home className="h-5 w-5" />
       <p>Back to Home</p>

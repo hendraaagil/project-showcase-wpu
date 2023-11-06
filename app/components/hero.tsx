@@ -15,7 +15,7 @@ export const Hero = ({
     <h1 className="text-center text-4xl font-bold">Project Showcase WPU</h1>
     <Season seasons={seasons} />
     <div className="flex flex-col items-center text-sm sm:flex-row">
-      <TimerReset className="mr-2 h-4 w-4" />
+      <TimerReset className="mb-2 mr-0 h-4 w-4 sm:mb-0 sm:mr-2" />
       <p className="text-center">
         Terakhir Diupdate: {toLocalDate(new Date(updatedAt))}
       </p>

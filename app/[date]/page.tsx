@@ -2,6 +2,7 @@ import type { Project, ProjectPerDate } from '@/app/types/showcase'
 
 import htmr from 'htmr'
 import Image from 'next/image'
+import { notFound } from 'next/navigation'
 
 import {
   Accordion,
@@ -36,7 +37,11 @@ const getProject = async (date: string): Promise<ProjectPerDate> => {
         (item: { date: string }) => toKebabCase(item.date) === date,
       ),
     )
-    .dates.find((item: { date: string }) => toKebabCase(item.date) === date)
+    ?.dates.find((item: { date: string }) => toKebabCase(item.date) === date)
+
+  if (!project) {
+    notFound()
+  }
 
   return project
 }
@@ -80,7 +85,7 @@ export default async function Page({ params }: { params: { date: string } }) {
   return (
     <section className="flex min-h-screen w-full flex-col justify-center pt-8">
       <Back />
-      <h2 className="my-8 px-4 text-3xl font-bold">Showcase {date}</h2>
+      <h2 className="my-8 px-2 text-3xl font-bold sm:px-4">Showcase {date}</h2>
       <Accordion type="single" className="w-full space-y-2" collapsible>
         {projects.map((project, index) => {
           const position = index + 1
@@ -88,7 +93,7 @@ export default async function Page({ params }: { params: { date: string } }) {
 
           return (
             <AccordionItem value={project.link} key={project.link}>
-              <AccordionTrigger className="rounded-t px-4 py-2 hover:bg-gray-300 [&[data-state=open]]:bg-gray-300">
+              <AccordionTrigger className="rounded-t px-2 py-2 hover:bg-gray-300 sm:px-4 [&[data-state=open]]:bg-gray-300">
                 {name}
               </AccordionTrigger>
               <AccordionContent className="rounded-b bg-gray-300 py-2">
