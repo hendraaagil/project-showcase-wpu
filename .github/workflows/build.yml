@@ -1,0 +1,12 @@
+name: Schedule Build Trigger
+
+on:
+  schedule:
+    - cron: '45 12 * * 6'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build hook request
+        run: curl -X POST -d {} ${{ secrets.BUILD_HOOK }}
