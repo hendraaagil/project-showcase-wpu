@@ -25,7 +25,7 @@ export async function generateStaticParams() {
     })
   })
 
-  return dates
+  return dates.map((date) => ({ date }))
 }
 
 const getProject = async (date: string): Promise<ProjectPerDate> => {
