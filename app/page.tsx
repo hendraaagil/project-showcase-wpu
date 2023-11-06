@@ -27,12 +27,13 @@ export default async function Home({
   const { updatedAt, seasons, projectPerSeason } = await getShowcase(
     searchParams['season']?.toString(),
   )
+  const dates = projectPerSeason.dates.map(({ date }) => date).reverse()
 
   return (
     <>
       <Hero seasons={seasons} updatedAt={updatedAt} />
       <hr className="mb-4 w-full border-gray-400" />
-      <Dates dates={projectPerSeason.dates} />
+      <Dates dates={dates} />
     </>
   )
 }

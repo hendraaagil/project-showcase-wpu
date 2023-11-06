@@ -28,7 +28,7 @@ export const Season = ({ seasons }: { seasons: Showcase['seasons'] }) => {
       onChange={(e) => handleChange(e.target.value)}
     >
       {seasons.map((season) => (
-        <option key={season.key} value={season.key}>
+        <option key={season.key} value={season.key} className="bg-gray-300">
           {season.name}
         </option>
       ))}
