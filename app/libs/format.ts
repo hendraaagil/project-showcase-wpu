@@ -15,4 +15,4 @@ export const toKebabCase = (str: string) =>
     .toLowerCase()
 
 export const toLocalDate = (date: Date) =>
-  format(date, 'PPP HH:mmxxx', { locale: id })
+  format(date, 'PPP HH:mm OOOO', { locale: id })
