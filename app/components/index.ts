@@ -1,4 +1,5 @@
+export * from './back'
+export * from './dates'
 export * from './footer'
 export * from './hero'
-export * from './projects'
 export * from './season'

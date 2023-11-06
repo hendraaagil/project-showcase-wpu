@@ -7,12 +7,18 @@ export const Footer = () => (
     <div className="flex justify-between">
       <p className="flex items-center">
         <Github className="mr-2 h-4 w-4" />
-        <Link href="https://github.com/hendraaagil/project-showcase-wpu">
+        <Link
+          href="https://github.com/hendraaagil/project-showcase-wpu"
+          isExternal
+        >
           Source Code
         </Link>
       </p>
       <p>
-        Created by <Link href="https://hendraaagil.dev">Hendra Agil</Link>
+        Created by{' '}
+        <Link href="https://hendraaagil.dev" isExternal>
+          Hendra Agil
+        </Link>
       </p>
     </div>
   </footer>

@@ -22,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={clsx(plusJakartaSans.className, 'bg-gray-200')}>
-        {children}
+        <main className="mx-auto flex max-w-5xl flex-col items-center px-1 pb-8 sm:px-4">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

@@ -1,14 +1,12 @@
 import type { Showcase } from '@/app/types/showcase'
 
-import { apiUrl } from '@/app/constants/url'
+import { Dates, Hero } from '@/app/components'
+import { fetchProjects } from '@/app/libs/api'
 import { toTitleCase } from '@/app/libs/format'
-import { Hero, Projects } from '@/app/components'
 
 const getShowcase = async (season?: string): Promise<Showcase> => {
-  const data = await fetch(apiUrl)
-  const dataJson = await data.json()
+  const { projects, updatedAt } = await fetchProjects()
 
-  const projects = dataJson.data.reverse()
   const seasons = projects.map((project: { season: string }) => ({
     key: project.season,
     name: toTitleCase(project.season),
@@ -18,11 +16,7 @@ const getShowcase = async (season?: string): Promise<Showcase> => {
     (project: { season: string }) => project.season === seasonQuery,
   )
 
-  return {
-    updatedAt: dataJson.fetched_at,
-    seasons,
-    projectPerSeason,
-  }
+  return { updatedAt, seasons, projectPerSeason }
 }
 
 export default async function Home({
@@ -35,10 +29,10 @@ export default async function Home({
   )
 
   return (
-    <main className="mx-auto flex max-w-5xl flex-col items-center px-1 pb-8 sm:px-4">
+    <>
       <Hero seasons={seasons} updatedAt={updatedAt} />
       <hr className="mb-4 w-full border-gray-400" />
-      <Projects projects={projectPerSeason} />
-    </main>
+      <Dates dates={projectPerSeason.dates} />
+    </>
   )
 }
