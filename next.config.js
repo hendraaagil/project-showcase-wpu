@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: 'api.project-kalian.rmecha.my.id',
         pathname: '/img/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.discordapp.com',
+        pathname: '/emojis/**',
+      },
     ],
   },
 }

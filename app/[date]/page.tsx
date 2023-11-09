@@ -48,7 +48,32 @@ const getProject = async (date: string): Promise<ProjectPerDate> => {
 
 const Project = ({ project }: { project: Project }) => {
   const { image, link, message, username } = project
+
   const imageUrl = imageBaseUrl + image
+  const regexEmoji = /&lt;:\w*:\d*&gt;/g
+
+  /**
+   * TODO: Need to remove duplicate same emoji (save unique only)
+   */
+  const emojis = message.match(regexEmoji)
+
+  let messageWithEmoji = message
+  if (emojis) {
+    emojis.forEach((emoji) => {
+      const [emojiName, emojiId] = emoji
+        .replace('&lt;:', '')
+        .replace('&gt;', '')
+        .split(':')
+
+      /**
+       * TODO: use `replaceAll()` here when `emojis` already store unique emoji only
+       */
+      messageWithEmoji = messageWithEmoji.replace(
+        emoji,
+        `<img src="https://cdn.discordapp.com/emojis/${emojiId}.png" alt="${emojiName}'s emoji" class="emoji" />`,
+      )
+    })
+  }
 
   return (
     <li className="space-y-2">
@@ -62,7 +87,7 @@ const Project = ({ project }: { project: Project }) => {
         height={720}
         className="rounded"
       />
-      {htmr(message, {
+      {htmr(messageWithEmoji, {
         transform: {
           a: ({ children, href }) => (
             <Link href={href as string} isExternal>
@@ -72,6 +97,25 @@ const Project = ({ project }: { project: Project }) => {
           ul: ({ children }) => <ul className="list-disc pl-4">{children}</ul>,
           ol: ({ children }) => (
             <ul className="list-decimal pl-4">{children}</ul>
+          ),
+          img: ({ className, src, alt, ...props }) => {
+            if (className?.includes('emoji')) {
+              return (
+                <Image
+                  src={src as string}
+                  alt={alt as string}
+                  width={22}
+                  height={22}
+                  className="m-1"
+                />
+              )
+            }
+
+            // eslint-disable-next-line @next/next/no-img-element
+            return <img src={src} alt={alt} className={className} {...props} />
+          },
+          p: ({ children }) => (
+            <p className="flex flex-wrap items-center">{children}</p>
           ),
         },
       })}
