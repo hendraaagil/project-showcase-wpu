@@ -94,9 +94,9 @@ const Project = ({ project }: { project: Project }) => {
               {children}
             </Link>
           ),
-          ul: ({ children }) => <ul className="list-disc pl-4">{children}</ul>,
+          ul: ({ children }) => <ul className="list-disc pl-6">{children}</ul>,
           ol: ({ children }) => (
-            <ul className="list-decimal pl-4">{children}</ul>
+            <ul className="list-decimal pl-6">{children}</ul>
           ),
           img: ({ className, src, alt, ...props }) => {
             if (className?.includes('emoji')) {
