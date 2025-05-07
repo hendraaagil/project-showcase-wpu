@@ -9,5 +9,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update last deploy timestamp
+        run: |
+          date "+%Y-%m-%d %H:%M:%S" > LAST_DEPLOY
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add LAST_DEPLOY
+          git commit -m "Update last deploy timestamp"
+          git push
+
       - name: Build hook request
         run: curl -X POST ${{ secrets.BUILD_HOOK }}
