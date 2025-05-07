@@ -10,17 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update last deploy timestamp
         run: |
-          date "+%Y-%m-%d %H:%M:%S" > LAST_DEPLOY
+          date '+%Y-%m-%dT%H:%M:%SZ' > LAST_DEPLOY
 
       - name: Commit and push changes
         run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add LAST_DEPLOY
           git commit -m "Update last deploy timestamp"
           git push
