@@ -9,7 +9,7 @@ export const Season = ({ seasons }: { seasons: Showcase['seasons'] }) => {
   const { replace } = useRouter()
 
   const handleChange = (term: string) => {
-    const params = new URLSearchParams(searchParams)
+    const params = new URLSearchParams(searchParams.toString())
     if (term) {
       params.set('season', term)
     } else {
