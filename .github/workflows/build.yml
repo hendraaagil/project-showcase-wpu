@@ -2,8 +2,8 @@ name: Schedule Build Trigger
 
 on:
   workflow_dispatch: # Manually trigger a workflow run
-  schedule:
-    - cron: '45 12 * * 6'
+  # schedule:
+  #   - cron: '45 12 * * 6'
 
 permissions:
   contents: write
